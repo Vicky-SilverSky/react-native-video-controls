@@ -67,6 +67,7 @@ export default class VideoPlayer extends Component {
       currentTime: 0,
       error: false,
       duration: 0,
+      length: 0
     };
 
     /**
@@ -107,6 +108,7 @@ export default class VideoPlayer extends Component {
       togglePlayPause: this._togglePlayPause.bind(this),
       toggleControls: this._toggleControls.bind(this),
       toggleTimer: this._toggleTimer.bind(this),
+      changeSeekerPos: this._changeSeekerPos.bind(this)
     };
 
     /**
@@ -195,6 +197,7 @@ export default class VideoPlayer extends Component {
     let state = this.state;
 
     state.duration = data.duration;
+    state.length = data.duration;
     state.loading = false;
     this.setState(state);
 
@@ -512,6 +515,14 @@ export default class VideoPlayer extends Component {
     let state = this.state;
     state.showTimeRemaining = !state.showTimeRemaining;
     this.setState(state);
+  }
+
+  _changeSeekerPos(position = 0) {
+    let state = this.state;
+    state.duration = state.length;
+    state.currentTime = 0;
+    this.setState(state);
+    this.setSeekerPosition(position);
   }
 
   /**
