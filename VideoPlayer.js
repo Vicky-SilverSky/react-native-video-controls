@@ -519,6 +519,7 @@ export default class VideoPlayer extends Component {
 
   _changeSeekerPos(position = 0) {
     let state = this.state;
+    state.paused = true;
     state.duration = state.length;
     state.currentTime = 0;
     this.setState(state);
